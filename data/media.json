@@ -1,0 +1,126 @@
+{
+    "media": [ 
+        {
+            "id": 1,
+            "title": "Başlangıç (Inception)",
+            "year": 2010,
+            "category": "Bilim Kurgu",
+            "rating": 8.8,
+            "summary": "Dom Cobb, rüyalar dünyasına girerek değerli sırları çalan yetenekli bir hırsızdır. Bu nadir yeteneği onu kurumsal casusluğun tehlikeli dünyasında aranan bir oyuncu haline getirir. Ancak uluslararası bir kaçak olduğu için sevdiklerini feda etmek zorunda kalmıştır. Cobb'a, imkansız gibi görünen son bir iş teklif edilir: 'Başlangıç'—yani bir fikir çalmak yerine, bir fikri bilinçaltına yerleştirmek. Başarırsa, kendisine normal bir hayat bahşedilecektir. Fakat Cobb'un tehlikeli dünyası, beklenmedik ve güçlü bir düşmanın her hareketini tahmin etmesiyle daha da tehlikeli hale gelir.",
+            "duration": "2 saat 28 dk",
+            "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+            "poster_url": "images/inception_poster.jpg"
+        },
+
+        {
+            "id": 2,
+            "title": "Dune",
+            "year": 2021,
+            "category": "Fantastik",
+            "rating": 8.0,
+            "summary": "Gelecekte, insanlığın evrenin dört bir yanına yayıldığı bir dönemde, Arrakis (Dune) gezegeni en değerli madde olan 'baharat'ın tek kaynağıdır. Paul Atreides'in ailesi, gezegenin kontrolünü Harkonnen ailesinden devralır. Ancak bu, gezegenin acımasız yerli halkı Fremenler ile eski düşmanlar arasında büyük bir çatışmayı tetikler. Paul, hem hanedanının çöküşüne tanık olur hem de kaderinde evrenin gidişatını değiştirecek mistik bir yolculuk olduğunu keşfeder. Bu geniş kapsamlı destan, ihanet, güç ve hayatta kalma temalarını işlerken, görsel olarak nefes kesici bir evren sunar.",
+            "duration": "2 saat 35 dk",
+            "cast": ["Timothée Chalamet", "Rebecca Ferguson"],
+            "poster_url": "images/dune_poster.jpg"
+        },
+        {
+    "id": 3, 
+    "title": "Recep İvedik 3",
+    "year": 2010,
+    "category": "Komedi", 
+    "rating": 4.3,        
+"summary": "Recep İvedik, dedesinden kalan üç kuruşluk mirası kaybetmesi ve tek dayanağı olan ninesini de kaybettikten sonra derin bir **depresyonun** eşiğine gelir. Hayattan keyif alamayan, neşesiz ve ruhu sıkışmış bir halde yaşayan Recep'in bu durumu, mahalledekileri ve onu sevenleri endişelendirir. Depresyondan kurtulmak için başvurduğu birbirinden **ilginç ve absürt** yöntemler, onu komik durumlar zincirine sürükler. Bu dönemde hayatına, uzaktan akrabası olan ve İstanbul'a üniversite okumak için gelip yanında kalmaya başlayan **Zeynep** girer. Modern ve şehirli Zeynep ile Recep'in **tamamen zıt dünyaları** ve yaşama bakış açıları, aynı evde bir arada yaşamayı bir komedi şölenine dönüştürür. Recep, bir yandan depresyonla mücadele ederken, bir yandan da Zeynep'e **hayata tutunma dersleri** vermeye çalışır ve bu süreçte kendisi de beklenmedik şekillerde iyileşmeye başlar. Film, Recep'in **yalnızlık, dostluk ve hayatın anlamı** gibi temaları kendi mizahıyla sorgulamasını konu alıyor.",
+"duration": "1 saat 34 dk",
+"cast": ["Şahan Gökbakar", "Zeynep Çamcı"],
+    "poster_url": "images/recep_ivedik_3_poster.jpg"
+},
+        {
+            "id": 4,
+            "title": "Kara Şövalye",
+            "year": 2008,
+            "category": "Aksiyon",
+            "rating": 9.0,
+            "summary": "Gotham şehri, Batman'in (Christian Bale) ve savcı Harvey Dent'in (Aaron Eckhart) yürüttüğü organize suçla mücadele sayesinde huzurlu bir döneme girmiştir. Ancak bu barış, maskeli ve anarşist dahi Joker'in (Heath Ledger) ortaya çıkışıyla bozulur. Joker'in tek amacı kaosu yaymak ve Gotham'ın düzenini yıkmaktır. Batman, yasal sınırlarını zorlayan bu yeni tehditle mücadele etmek ve şehrin ruhunu Joker'in ahlaki yozlaştırmasından korumak zorundadır. Film, kahramanlığın ve fedakarlığın karanlık tarafını derinlemesine inceler.",
+            "duration": "2 saat 32 dk",
+            "cast": ["Christian Bale", "Heath Ledger"],
+            "poster_url": "images/darkknight_poster2.jpg"
+        },
+        {
+            "id": 5,
+            "title": "Yeşil Yol (The Green Mile)",
+            "year": 1999,
+            "category": "Dram",
+            "rating": 8.6,
+            "summary": "Paul Edgecomb (Tom Hanks), 1930'larda Louisiana'daki Cold Mountain Hapishanesi'nin E bloğunda (Yeşil Yol olarak bilinir) gardiyan olarak çalışmaktadır. Bu blok, elektrikli sandalyede idam edilecek mahkumların son günlerini geçirdiği yerdir. Paul'ün hayatı, çocuk cinayetinden hüküm giyen dev cüsseli ve nazik John Coffey'in (Michael Clarke Duncan) gelişiyle değişir. Coffey'in, gizli ve doğaüstü bir iyileştirme gücüne sahip olduğu ortaya çıkar. Paul, bu adamın masum olabileceğine inanmaya başlar ve etik bir ikilemle karşı karşıya kalır. Film, adalet, merhamet ve inanç üzerine dokunaklı bir hikaye sunar.",
+            "duration": "3 saat 9 dk",
+            "cast": ["Tom Hanks", "Michael Clarke Duncan"],
+            "poster_url": "images/greenmile_poster.jpg"
+        },
+        {
+            "id": 6,
+            "title": "Mad Max: Fury Road",
+            "year": 2015,
+            "category": "Aksiyon",
+            "rating": 8.1,
+            "summary": "Medeniyetin çöktüğü ve yakıtın en değerli kaynak olduğu post-apokaliptik bir çölde geçen hikayede, yalnız bir savaşçı olan Max (Tom Hardy), kendisini acımasız Imperator Furiosa (Charlize Theron) ve zalim Immortan Joe'dan kaçan bir grup kadın arasında bulur. Furiosa, tiran Joe'nun elindeki beş kadını kurtarmış ve onları 'Yeşil Yer' adı verilen efsanevi bir sığınağa götürmeye çalışmaktadır. Max, başlangıçta isteksiz olsa da, hayatta kalma mücadelesinde Furiosa ile ittifak kurar ve çölün en ölümcül takibi başlar. Film, neredeyse durmayan aksiyonu, görsel şöleni ve feminist temalarıyla övgü toplamıştır.",
+            "duration": "2 saat 0 dk",
+            "cast": ["Tom Hardy", "Charlize Theron"],
+            "poster_url": "images/madmax_poster.jpg"
+        },
+        {
+            "id": 7,
+            "title": "Kelebek Etkisi (The Butterfly Effect)",
+            "year": 2004,
+            "category": "Bilim Kurgu",
+            "rating": 7.6,
+            "summary": "Küçük yaşlarda yaşadığı travmatik olaylar nedeniyle hafıza kaybı yaşayan Evan Treborn (Ashton Kutcher), geçmişi tamamen unutmuştur. Ancak, üniversitede bir günlük okumaya başladığında, geçmişindeki önemli anlara geri dönme ve o anları değiştirme yeteneğine sahip olduğunu fark eder. Bu yeteneğini, başta çocukluk aşkı Kayleigh'nin (Amy Smart) trajik hayatını düzeltmek için kullanır. Ancak Evan, kelebek etkisinin acımasız gerçeğiyle yüzleşir: Geçmişte yapılan en küçük bir değişiklik bile, gelecekte felaket sonuçlar doğurabilir. Her geri dönüş, onun ve sevdiklerinin hayatını geri dönülmez şekilde değiştirir.",
+            "duration": "1 saat 53 dk",
+            "cast": ["Ashton Kutcher", "Amy Smart"],
+            "poster_url": "images/butterfly_poster.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Organize İşler: Sazan Sarmalı",
+            "year": 2019,
+            "category": "Komedi",
+            "rating": 6.7,
+            "summary": "Asım (Yılmaz Erdoğan) ve çetesi, İstanbul'un karmaşık dolandırıcılık dünyasında kendilerine has yöntemlerle geçinmektedir. Ancak bir iş sırasında, daha büyük ve uluslararası bir dolandırıcılık çetesinin hedefi haline gelirler. Çete, sıradan insanların büyük hayallerini sömürerek sazan sarmalı içine düşürmektedir. Asım, hem kendi ekibini hem de mağdurları korumak için büyük bir mücadeleye girişir. Film, komik ve aksiyon dolu sahneleriyle, İstanbul'un farklı yüzlerini ve dolandırıcıların iç dünyasını mizahi bir dille anlatır.",
+            "duration": "2 saat 13 dk",
+            "cast": ["Yılmaz Erdoğan", "Kıvanç Tatlıtuğ", "Ezgi Mola"],
+            "poster_url": "images/organize_isler_poster.jpg"
+        },
+        {
+            "id": 9,
+            "title": "Piyanist (The Pianist)",
+            "year": 2002,
+            "category": "Biyografi",
+            "rating": 8.5,
+            "summary": "Film, II. Dünya Savaşı sırasında Varşova'da yaşayan ünlü Polonyalı-Yahudi piyanist Władysław Szpilman'ın (Adrien Brody) gerçek yaşam hikayesini konu alır. Varşova Gettosu'ndaki zorlu hayata tanık olan Szpilman, ailesinden ayrı düşer ve hayatta kalmak için amansız bir mücadele verir. Savaşın yıkımı ve soykırımın dehşeti arasında, Szpilman'ın tek sığınağı ve umudu müziğidir. Film, insanın hayatta kalma gücünü, sanatın önemini ve savaşın trajik sonuçlarını dokunaklı bir şekilde gözler önüne serer. Romalı Polanski tarafından yönetilen bu eser, dünya çapında birçok ödül kazanmıştır.",
+            "duration": "2 saat 30 dk",
+            "cast": ["Adrien Brody", "Thomas Kretschmann"],
+            "poster_url": "images/pianist_poster.jpg"
+        },
+        {
+            "id": 10,
+            "title": "Babam ve Oğlum",
+            "year": 2005,
+            "category": "Dram",
+            "rating": 8.3,
+            "summary": "1980 askeri darbesi sırasında politik nedenlerle babası Hüseyin'le (Çetin Tekindor) arası açılan Deniz (Fikret Kuşkan), karısının doğum sırasında ölümü üzerine oğlu Deniz'i (Ege Tanman) alıp yıllardır küs olduğu babasının Ege'deki çiftliğine geri döner. Film, üç neslin bir araya gelmesiyle ortaya çıkan duygusal çatışmaları ve iyileşme sürecini anlatır. Oğul Sadık'ın geçmişiyle yüzleşmesi ve baba Hüseyin'in torunuyla kurduğu bağ, Türkiye'nin yakın tarihini de arka planda işleyen derin bir aile dramıdır. Çağan Irmak imzalı bu film, Türk sinemasının en çok izlenen ve sevilen eserlerinden biridir.",
+            "duration": "1 saat 52 dk",
+            "cast": ["Çetin Tekindor", "Fikret Kuşkan", "Fatma Hümeyra Akbay"],
+            "poster_url": "images/babam_ve_oglum_poster.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Esaretin Bedeli (The Shawshank Redemption)",
+            "year": 1994,
+            "category": "Dram",
+            "rating": 9.2,
+            "summary": "Başarılı bir bankacı olan Andy Dufresne (Tim Robbins), karısını ve sevgilisini öldürmek suçundan haksız yere hüküm giyer ve Shawshank Hapishanesi'ne gönderilir. Burada, hayatının geri kalanını geçireceği bu acımasız ve yozlaşmış ortamda, dayanıklılığı, zekası ve umuduyla hayatta kalır. Mahkum arkadaşı Red (Morgan Freeman) ile kurduğu derin dostluk, ona hapishane duvarlarının ötesinde bir umut ışığı olur. Film, özgürlük, dostluk ve insan ruhunun boyun eğmez gücü üzerine sinema tarihinin en iyi hikayelerinden biri kabul edilir.",
+            "duration": "2 saat 22 dk",
+            "cast": ["Tim Robbins", "Morgan Freeman"],
+            "poster_url": "images/shawshank_poster.jpg"
+        }
+    ]
+}
