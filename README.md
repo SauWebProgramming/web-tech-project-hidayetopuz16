@@ -2,7 +2,7 @@
 
 Merhaba, bu repository, ISE-201 Web Teknolojileri dersi için hazırladığım **Proje Ödevi (Seçenek 1: İnteraktif Medya Kitaplığı)**'na aittir.
 
-Proje, sunucu tarafı kod kullanmadan, tamamen modern **HTML5, CSS3 ve ES6+ JavaScript** ile geliştirilmiş bir Single Page Application (SPA)'dır.
+Projem, sunucu tarafı kod kullanmadan, tamamen modern **HTML5, CSS3 ve ES6+ JavaScript** ile geliştirdiğim bir Tek Sayfa Uygulamasıdır (Single Page Application - SPA). Uygulama, **Film, Dizi ve Kitap** gibi farklı medya türlerini tek bir arayüzde yönetebilecek şekilde tasarlandı.
 
 ---
 
@@ -12,22 +12,23 @@ Proje, sunucu tarafı kod kullanmadan, tamamen modern **HTML5, CSS3 ve ES6+ Java
 
 | Gereksinim | Açıklama |
 | :--- | :--- |
-| **Veri Yönetimi** | Medya bilgileri, `data/media.json` dosyasından **`fetch()` API** kullanılarak asenkron (`async/await`) olarak çekildi. |
-| **Tek Sayfa Uygulama (SPA)** | Detay sayfaları dahil, sayfa yenilenmesi olmadan dinamik olarak JavaScript ile DOM'a basılıyor. |
-| **Geri/İleri Tuş Desteği** | SPA olmasına rağmen, **`history.pushState`** ve **`popstate`** event'leri ile tarayıcının adres çubuğu güncelleniyor ve geri/ileri tuşları aktif olarak çalışıyor. |
-| **Duyarlı Tasarım (Responsive)** | Tüm arayüz, telefon, tablet ve masaüstü cihazlara uyumlu, **CSS Flexbox ve Grid** kullanılarak tasarlandı. |
-| **Arama & Filtreleme** | Arama input'u ile isme göre anlık arama ve kategori/yıla göre dinamik filtreleme yaptım. |
-| **Favorilerim Özelliği** | Kullanıcı favori medyaları **`localStorage`** kullanarak tarayıcıda saklayıp, ayrı bir menüden görebiliyor. |
+| **Veri Yönetimi** | Medya bilgilerini, `data/media.json` dosyasından **`fetch()` API** kullanarak asenkron (`async/await`) yapısıyla çektim. JSON içerisindeki **yinelenen ID'leri düzelttim** ve sıralamaya uygun benzersiz ID'ler atadım. |
+| **Tek Sayfa Uygulama (SPA)** | Detay sayfaları dahil, sayfa yenilenmesi olmadan dinamik olarak JavaScript ile DOM’a basıyorum. Detay modalını, Kitap türü için **Yazar/Sayfa Sayısı** gibi bilgileri dinamik olarak gösterecek şekilde kodladım. |
+| **Geri/İleri Tuş Desteği** | SPA olmasına rağmen, **`history.pushState`** ve **`popstate`** event'lerini kullanarak tarayıcının adres çubuğunu güncelledim ve geri/ileri tuşlarının aktif çalışmasını sağladım. |
+| **Duyarlı Tasarım (Responsive)** | Tüm arayüzü, telefon, tablet ve masaüstü cihazlara uyumlu olacak şekilde, **CSS Flexbox ve Grid** kullanarak tasarladım. |
+| **Arama & Filtreleme** | Arama input'u ile isme göre anlık arama ve kategori/yıla göre dinamik filtreleme yaptım. **Yeni eklenen 'Kitap' türü için de filtreleme özelliğini aktif ettim.** |
+| **Favorilerim Özelliği** | Kullanıcıların favori medyaları **`localStorage`** kullanarak tarayıcıda kalıcı olarak saklanabiliyor ve ayrı bir menüden görüntülenebiliyor. |
 
 ### 2. Kod Kalitesi ve Modern JS
 
-* **Modern JS:** Projenin her yerinde **`const`** ve **`let`** kullanıldı, **`var`** kesinlikle kullanılmadı.
+* **Modern JS:** Projenin her yerinde modern **`const`** ve **`let`** kullandım, **`var`** kullanımından kesinlikle kaçındım.
 * **Asenkron Kodlama:** Veri çekme ve işleme süreçlerinde modern **`async/await`** yapısını kullandım.
-* **Ayrılmış Mimari:** HTML, CSS ve JS dosyaları net bir şekilde ayırdım (inline style/script kullanılmadı).
+* **Ayrılmış Mimari:** HTML, CSS ve JS dosyalarını net bir şekilde ayırarak (inline style/script kullanmadan) temiz bir mimari oluşturdum.
+* **Dinamik Detay Yönetimi:** `main.js` içinde medya türüne (`Film`, `Dizi`, `Kitap`) göre detay modalında gösterilecek bilgiyi (`stars`/`author`, `duration`/`sayfa sayısı`) dinamik olarak değiştiren mantığı uyguladım.
 
 ### 3. Bonuslar
 
-* **Karanlık Mod (Dark Theme):** Tek bir tuşla tema değiştirilebiliyor ve bu tercih `localStorage` ile kaydediliyor.
+* **Karanlık Mod (Dark Theme):** Tek bir tuşla tema değiştirilebiliyor ve bu tercihi `localStorage` ile kaydediyorum.
 * **Gelişmiş Sıralama:** Puana ve yayın yılına göre medyaları sıralama seçeneği ekledim.
 
 ---
