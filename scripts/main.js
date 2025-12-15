@@ -101,16 +101,23 @@ const renderMediaList = (mediaArray) => {
         
         const ratingPercentage = (media.rating / 10) * 100;
         
+        // POSTER RESMİNİ EKLEMEK İÇİN KOD BLOĞU GÜNCELLENDİ
         card.innerHTML = `
-            <h3>${media.title} (${media.year})</h3>
-            <p><strong>Kategori:</strong> ${media.category}</p>
-            <p><strong>Puan:</strong> ${media.rating}/10</p>
-            
-            <div class="rating-bar-container">
-                <div class="rating-bar-fill" style="width: ${ratingPercentage}%;"></div>
+            <div class="media-poster-container"> 
+                <img src="${media.poster_url}" alt="${media.title} Poster" class="media-poster-image">
             </div>
             
-            ${isFavorite ? '<span>⭐ Favori</span>' : ''}
+            <div class="media-info-text">
+                <h3>${media.title} (${media.year})</h3>
+                <p><strong>Kategori:</strong> ${media.category}</p>
+                <p><strong>Puan:</strong> ${media.rating}/10</p>
+                
+                <div class="rating-bar-container">
+                    <div class="rating-bar-fill" style="width: ${ratingPercentage}%;"></div>
+                </div>
+                
+                ${isFavorite ? '<span>⭐ Favori</span>' : ''}
+            </div>
         `;
         mediaListSection.appendChild(card);
     });
@@ -170,7 +177,7 @@ const showDetail = (mediaId) => {
     const buttonText = isFav ? 'Favorilerden Çıkar' : 'Favorilere Ekle';
     const buttonSymbol = isFav ? '★' : '☆'; // ★ (dolu yıldız) veya ☆ (boş yıldız)
 
-    // YENİ HTML ŞABLONU (TÜM GEREKLİ BİLGİLER VE METİN+YILDIZ BUTONU DAHİL)
+    // YENİ HTML ŞABLONU (POSTER KISMI ZATEN DOĞRUYDU)
     mediaDetailSection.innerHTML = `
         <div class="detail-card">
             <button onclick="navigate('home')" class="back-button">← Geri Dön</button>
