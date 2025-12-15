@@ -37,7 +37,6 @@
     --neon-main: #ff69b4; 
     --neon-glow: rgba(255, 105, 180, 0.7);
     --neon-main-rgb: 255, 105, 180;
-    /* YENİLİK: KARANLIK MOD İÇİN AFİŞ (Rogue One) */
 }
 
 /* --- 2. GENEL SIFIRLAMA VE BODY STİLİ (Afiş Katmanları Buradadır) --- */
@@ -53,8 +52,9 @@ body {
     color: var(--color-text);
     transition: background-color 0.5s, color 0.5s; 
     min-height: 100vh;
-    --bg-movie-poster: url('../images/back_ground_poster.jpg');    
-    /* YENİLİK: ÜÇ KATMANLI FİLM AFİŞİ ARKA PLANI (Çözüm burada) */
+    /* Afiş URL'si bir değişkenden alınmalıdır, örnek URL kullanıldı. */
+    --bg-movie-poster: url('../images/back_ground_poster.jpg'); 
+    
     background: 
         /* 1. Katman: GÜÇLÜ KOYULTMA DEGRADE (Okunurluk için kritik!) */
         linear-gradient(to bottom, 
@@ -87,7 +87,6 @@ header {
 }
 
 .header-content {
-    /* Responsive düzen için gerekli olabilir, ancak mevcut kodda yoktu. Ekledim. */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -134,7 +133,7 @@ main {
     padding: 2.5rem 5%; 
     max-width: 1200px; 
     margin: 0 auto; 
-    /* YENİLİK: Opaklık ve Blur, metnin afiş üzerinde okunmasını sağlar */
+    /* Opaklık ve Blur, metnin afiş üzerinde okunmasını sağlar */
     background-color: rgba(var(--color-bg-rgb), 0.8); 
     backdrop-filter: blur(5px); 
     border-radius: 15px;
@@ -144,7 +143,6 @@ main {
 }
 
 /* --- 5. KONTROLLER ve FİLTRELER --- */
-/* #controls elementini #filters olarak değiştirdim, JS'deki id'ye uyması için */
 #filters {
     display: flex;
     gap: 1rem; 
@@ -157,7 +155,8 @@ main {
     box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.2); 
     align-items: center; 
 }
-#search-input, #category-filter, #year-filter, #sort-filter {
+
+#search-input, #category-filter, #year-filter, #type-filter, #sort-filter { 
     padding: 0.85rem; 
     border: 1px solid var(--color-controls-border);
     border-radius: 8px; 
@@ -169,7 +168,8 @@ main {
 }
 #search-input { flex-grow: 1; max-width: none; } 
 
-#search-input:focus, #category-filter:focus, #year-filter:focus, #sort-filter:focus {
+/* Odaklama stilleri */
+#search-input:focus, #category-filter:focus, #year-filter:focus, #type-filter:focus, #sort-filter:focus { 
     outline: none;
     border-color: var(--color-primary); 
     box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.25); 
@@ -183,7 +183,7 @@ main {
 }
 
 .media-card {
-    /* Resim ve metni yan yana almak için Flexbox ekledik */
+    /* Resim ve metni yan yana almak için Flexbox */
     display: flex;
     gap: 15px; 
     align-items: flex-start;
@@ -209,9 +209,9 @@ main {
     border-color: var(--neon-main);    
 }
 
-/* Yeni Eklenen Poster Stilleri */
+/* Poster Stilleri */
 .media-poster-container {
-    flex-shrink: 0; /* Resmin kart daralsa bile küçülmesini engelle */
+    flex-shrink: 0; 
     width: 80px; 
     height: 120px; 
     overflow: hidden;
@@ -222,12 +222,12 @@ main {
 .media-poster-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Resmi, bozulmadan kapsayıcıya sığdır */
+    object-fit: cover; 
     display: block;
 }
 
 .media-info-text {
-    flex-grow: 1; /* Geri kalan metnin tüm alanı kaplamasını sağla */
+    flex-grow: 1; 
 }
 
 .media-info-text h3 {
@@ -254,7 +254,6 @@ main {
 }
 
 /* --- 7. DİĞER ELEMANLAR --- */
-/* back-button artık modalda yok, çarpı butonu var. Bu sınıfı sildim. */
 
 #loader {
     text-align: center;
@@ -263,7 +262,7 @@ main {
     padding: 50px;
     display: none; 
     animation: pulse 1.5s infinite alternate;
-    background-color: var(--color-controls-bg); /* Filtreler ile uyumlu olsun */
+    background-color: var(--color-controls-bg); 
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.2); 
 }
@@ -289,7 +288,6 @@ footer {
     align-items: center;
     gap: 10px; 
     
-    /* Düzeltme: Beyaz/Tema Zıtlığı */
     background-color: white; 
     color: var(--color-text);
     border: 2px solid var(--color-primary);
@@ -321,8 +319,8 @@ footer {
 
 
 #favorite-btn:hover {
-    background-color: var(--color-primary); /* Hover'da Tema rengi dolgu */
-    color: white; /* Hover'da Beyaz yazı */
+    background-color: var(--color-primary); 
+    color: white; 
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.3);
 }
@@ -344,21 +342,21 @@ footer {
     border-color: #2ecc71;
 }
 
-/* --- 9. MODAL / DETAY BİNDİRME STİLLERİ (YENİ EKLENEN KISIM) --- */
+/* --- 9. MODAL / DETAY BİNDİRME STİLLERİ --- */
 
 /* Modal Arka Plan Bindirmesi */
 #media-detail-modal {
-    display: none; /* Varsayılan olarak gizli */
+    display: none; 
     position: fixed; 
-    z-index: 2000; /* Header'dan daha yüksek olmalı */
+    z-index: 2000; 
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.85); /* Daha koyu arka plan */
-    justify-content: center; /* İçeriği ortala */
-    align-items: center; /* İçeriği dikey ortala */
+    background-color: rgba(0, 0, 0, 0.85); 
+    justify-content: center; 
+    align-items: center; 
     animation: fadeIn 0.3s;
 }
 
@@ -373,11 +371,14 @@ footer {
     padding: 30px;
     border-radius: 12px;
     width: 90%; 
-    max-width: 900px; /* Maksimum genişlik */
-    box-shadow: 0 5px 25px rgba(var(--neon-main-rgb), 0.5); /* Neon gölge */
+    max-width: 900px; 
+    box-shadow: 0 5px 25px rgba(var(--neon-main-rgb), 0.5); 
     position: relative;
     animation: slideDown 0.4s;
     border: 3px solid var(--neon-main);
+    
+    max-height: 90vh; 
+    overflow-y: auto; 
 }
 .dark-theme .modal-content {
     background-color: var(--color-card-bg);
@@ -398,6 +399,7 @@ footer {
     right: 15px;
     cursor: pointer;
     transition: color 0.3s;
+    z-index: 10; 
 }
 .dark-theme .close-button {
     color: var(--color-text);
@@ -411,10 +413,10 @@ footer {
 }
 
 /* Detay İçeriği */
-#media-detail h2 {
-    /* Başlıklar dinamik renk alıyordu, CSS'te sadece margin ayarladım */
-    margin-bottom: 10px;
+.detail-card {
+    padding-top: 15px; 
 }
+
 
 /* --- 10. MEDYA SORGU STİLİ (RESPONSIVE) --- */
 @media (max-width: 768px) {
@@ -446,8 +448,21 @@ footer {
     
     /* Modalın mobil görünümü */
     .modal-content {
-        margin: 10% 5%;
-        width: 90%;
-        padding: 20px;
+        /* Mobil görünümde tam ekran kaplamaya daha yakın olsun */
+        width: 95%;
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    /* Detay içeriğindeki poster ve bilgiyi alt alta al */
+    .detail-card > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    /* Filtrelerin mobil görünümü (tam genişlik) */
+    #search-input, #category-filter, #year-filter, #type-filter, #sort-filter {
+        max-width: 100%;
     }
 }
