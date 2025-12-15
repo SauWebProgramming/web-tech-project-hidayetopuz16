@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Gelişmiş Medya Kitaplığı (Dark Mode, Sıralama, SPA)</title>
+    <title>Gelişmiş Medya Kitaplığı (Dark Mode, Sıralama, Modal Detay)</title>
     <link rel="stylesheet" href="styles/main.css"> 
 </head>
 <body>
 
     <header>
-        <h1>Medya Kitaplığı</h1>
-        <nav id="main-nav"> 
-            <a href="#tüm-medyalar" data-view="home">Tüm Medyalar</a>
-            <a href="#favorilerim" data-view="favorites">Favorilerim</a> 
-        </nav>
-        <button id="theme-toggle" aria-label="Temayı değiştir">🌙 Karanlık Mod</button>
+        <div class="header-content"> <h1>Medya Kitaplığı</h1>
+            <nav id="main-nav"> 
+                <a href="#tüm-medyalar" data-view="home" class="active">Tüm Medyalar</a>
+                <a href="#favorilerim" data-view="favorites">Favorilerim</a> 
+            </nav>
+            <button id="theme-toggle" aria-label="Temayı değiştir">🌙 Karanlık Mod</button>
+        </div>
     </header>
 
     <main>
 
-        <section id="controls">
-            <input type="text" id="search-input" placeholder="Medya Ara...">
+        <section id="filters"> <input type="text" id="search-input" placeholder="Medya Ara...">
             <select id="category-filter">
                 <option value="">Tüm Kategoriler</option>
             </select>
@@ -39,15 +39,21 @@
         <section id="media-list" class="grid-view" style="display: none;">
         </section>
         
-        <section id="media-detail" style="display: none;">
-        </section>
-
-    </main>
+        </main>
 
     <footer>
         <p>Geliştiren: B231200015 Hidayet Opuz | © 2025 İnteraktif Medya Kitaplığı</p>
     </footer>
 
+    <div id="media-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="hideDetail()">&times;</span>
+            
+            <div id="media-detail">
+                </div>
+        </div>
+    </div>
+    
     <script src="scripts/main.js"></script> 
 </body>
 </html>
