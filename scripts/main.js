@@ -10,6 +10,7 @@ const mediaDetailModal = document.getElementById('media-detail-modal'); // YENİ
 const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
 const yearFilter = document.getElementById('year-filter');
+const typeFilter = document.getElementById('type-filter'); 
 const sortFilter = document.getElementById('sort-filter');
 const mainNav = document.getElementById('main-nav');
 const loader = document.getElementById('loader');
@@ -66,6 +67,12 @@ const fetchMediaData = async () => {
         }
         const data = await response.json(); 
         allMedia = data.media; 
+        
+        // Eksik 'type' alanını otomatik tamamlama
+        allMedia = allMedia.map(item => ({
+            ...item,
+            type: item.type || 'Film' // Eğer type alanı yoksa Film ata
+        }));
         
         console.log('✅ VERİ BAŞARIYLA YÜKLENDİ.'); 
         
@@ -135,6 +142,7 @@ const applyFiltersAndSorting = () => {
     const searchTerm = searchInput.value.toLowerCase();
     const selectedCategory = categoryFilter.value;
     const selectedYear = yearFilter.value;
+    const selectedType = typeFilter.value; 
     const selectedSort = sortFilter.value; 
 
     
@@ -146,7 +154,10 @@ const applyFiltersAndSorting = () => {
         const matchesCategory = selectedCategory === "" || media.category === selectedCategory;
         const matchesYear = selectedYear === "" || media.year.toString() === selectedYear;
         
-        return matchesSearch && matchesCategory && matchesYear;
+        // TÜR FİLTRESİ MANTIĞI
+        const matchesType = selectedType === "" || media.type === selectedType;
+        
+        return matchesSearch && matchesCategory && matchesYear && matchesType; 
     });
 
     // 2. Sıralama (YENİLİK: Sorting mantığı)
@@ -157,6 +168,7 @@ const applyFiltersAndSorting = () => {
             } else if (selectedSort === 'year_desc') {
                 return b.year - a.year; // Yıla göre büyükten küçüğe
             }
+            return 0; 
         });
     }
     
@@ -165,30 +177,57 @@ const applyFiltersAndSorting = () => {
 
 // YENİ: Detay Modalını Gizleme Fonksiyonu
 const hideDetail = () => {
-    // URL'yi değiştirmiyoruz, sadece modalı gizliyoruz.
     mediaDetailModal.style.display = 'none';
 }
 
 
-// Açıklama: Detay Modalını Gösterme (URL DEĞİŞİKLİĞİ YOK)
+// Açıklama: Detay Modalını Gösterme 
 const showDetail = (mediaId) => {
     const media = allMedia.find(m => m.id === mediaId);
     if (!media) return;
 
-    // Detay artık ana sayfayı bloke eden bir Modal.
     mediaDetailModal.style.display = 'flex'; 
 
     // Başlık rengini kategoriye göre dinamik yap
     const titleColor = media.category === 'Bilim Kurgu' ? 'navy' : (media.category === 'Aksiyon' ? 'darkred' : 'purple');
 
-    // YENİLİK: Buton durumu ve metin/simge tanımlamaları (Metin + Yıldız)
+    // Buton durumu ve metin/simge tanımlamaları 
     const isFav = getFavorites().includes(media.id);
     const buttonText = isFav ? 'Favorilerden Çıkar' : 'Favorilere Ekle';
-    const buttonSymbol = isFav ? '★' : '☆'; // ★ (dolu yıldız) veya ☆ (boş yıldız)
+    const buttonSymbol = isFav ? '★' : '☆'; 
+    
+    // DİNAMİK ALAN VE ETİKET BELİRLEME
+    let detailLabel;
+    let detailData;
+    let durationDisplay; 
+
+    if (media.type === 'Kitap') {
+        detailLabel = 'Yazar';
+        // Kitaplar için 'author' alanını kullan
+        detailData = (media.author && Array.isArray(media.author)) ? media.author.join(', ') : 'Bilgi Yok';
+        durationDisplay = `<p><strong>Sayfa:</strong> ${media.duration || 'N/A'}</p>`; 
+    } else {
+        detailLabel = 'Başroller';
+        // Film/Diziler için 'stars' alanını kullan
+        detailData = (media.stars && Array.isArray(media.stars)) ? media.stars.join(', ') : 'Bilgi Yok'; 
+        
+        if (media.type === 'Dizi') {
+            // Dizi için detaylı süre bilgisi (episode_count alanı JSON'da olmalıdır)
+            const episodes = media.episode_count ? ` (${media.episode_count} Bölüm)` : '';
+            durationDisplay = `<p><strong>Sezon:</strong> ${media.duration || 'N/A'} ${episodes}</p>`;
+        } else {
+            // Film için standart süre bilgisi
+            durationDisplay = `<p><strong>Süre:</strong> ${media.duration || 'N/A'}</p>`;
+        }
+    }
+    
+    const summaryText = media.summary || 'Bu medya için özet bulunmamaktadır.';
+    const typeText = media.type || 'N/A';
+
 
     // Detay içeriğini modalın içindeki container'a yazdır
     mediaDetailContainer.innerHTML = `
-        <div class="detail-card">
+        <div class="detail-card" style="padding-top: 25px;">
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 
                 <div style="flex-shrink: 0;">
@@ -197,16 +236,16 @@ const showDetail = (mediaId) => {
 
                 <div>
                     <h2 style="color: ${titleColor}; margin-top: 0;">${media.title} (${media.year})</h2>
+                    <p><strong>Tür:</strong> ${typeText}</p>
                     <p><strong>Puan:</strong> ${media.rating} / 10</p>
                     <p><strong>Kategori:</strong> ${media.category}</p>
-                    <p><strong>Süre:</strong> ${media.duration}</p>
-                    <p><strong>Oyuncular:</strong> ${media.cast.join(', ')}</p>
+                    ${durationDisplay} <p><strong>${detailLabel}:</strong> ${detailData}</p> 
                 </div>
             </div>
 
             <hr style="margin: 20px 0;">
             <h3>Özet</h3>
-            <p>${media.summary}</p>
+            <p>${summaryText}</p>
             
             <button 
                 id="favorite-btn" 
@@ -217,9 +256,8 @@ const showDetail = (mediaId) => {
                 <span class="button-text">${buttonText}</span> 
                 <span class="button-icon">${buttonSymbol}</span>
             </button>
-            </div>
+        </div>
     `;
-    // Modal, showDetail ile açıldığı için liste görünmeye devam eder.
 };
 
 
@@ -247,7 +285,7 @@ const toggleFavorite = (mediaId) => {
     // Modal içindeki buton durumunu güncellemek için detay gösterimini tekrar çağır
     showDetail(mediaId); 
     
-    // YENİLİK: Favoriler veya Ana sayfadaki listeyi güncelle.
+    // Favoriler veya Ana sayfadaki listeyi güncelle.
     applyFiltersAndSorting(); 
 };
 
@@ -260,9 +298,10 @@ const navigate = (view) => {
     searchInput.value = '';
     categoryFilter.value = '';
     yearFilter.value = '';
-    sortFilter.value = 'none'; // Sıralamayı resetle
+    typeFilter.value = ''; 
+    sortFilter.value = 'none'; 
 
-    // YENİLİK: Detay modalını gizle
+    // Detay modalını gizle
     hideDetail(); 
 
     if (view === 'home') {
@@ -274,7 +313,7 @@ const navigate = (view) => {
         mediaListSection.style.display = 'grid';
     }
     
-    // YENİLİK: Hangi görünümde olursak olalım, doğru listeyi göstermesi için applyFiltersAndSorting'i çağır.
+    // Doğru listeyi göstermesi için applyFiltersAndSorting'i çağır.
     applyFiltersAndSorting();
 };
 
@@ -282,9 +321,10 @@ const navigate = (view) => {
 searchInput.addEventListener('input', applyFiltersAndSorting);
 categoryFilter.addEventListener('change', applyFiltersAndSorting);
 yearFilter.addEventListener('change', applyFiltersAndSorting);
+typeFilter.addEventListener('change', applyFiltersAndSorting); 
 sortFilter.addEventListener('change', applyFiltersAndSorting); 
 
-// YENİLİK: Navigasyon Linkleri İçin Event Listener (Tüm Medyalar/Favorilerim)
+// Navigasyon Linkleri İçin Event Listener (Tüm Medyalar/Favorilerim)
 mainNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault(); 
@@ -298,7 +338,7 @@ mainNav.querySelectorAll('a').forEach(link => {
     });
 });
 
-// YENİLİK: Tema değiştirme düğmesi
+// Tema değiştirme düğmesi
 themeToggle.addEventListener('click', () => {
     if (document.body.classList.contains('dark-theme')) {
         disableDarkTheme();
@@ -307,7 +347,7 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// YENİLİK: Modal dışına tıklayınca kapatma
+// Modal dışına tıklayınca kapatma
 window.addEventListener('click', (event) => {
     // Eğer tıklanan element modalın kendisiyse (içindeki içerik değil) kapat.
     if (event.target == mediaDetailModal) {
@@ -315,7 +355,7 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// YENİLİK: ESC tuşu ile modal kapatma
+// ESC tuşu ile modal kapatma
 window.addEventListener('keydown', (event) => {
     // ESC tuşuna basıldıysa ve modal açıksa
     if (event.key === 'Escape' && mediaDetailModal.style.display === 'flex') {
@@ -324,11 +364,11 @@ window.addEventListener('keydown', (event) => {
 });
 
 
-// YENİLİK: Geri/İleri Tuşu Yönetimi (popstate) - Detay URL'lerini artık yönetmeyecek
+// Geri/İleri Tuşu Yönetimi (popstate) 
 window.addEventListener('popstate', () => {
     const hash = window.location.hash; 
     
-    // YENİLİK: Her durumda modalı kapat
+    // Her durumda modalı kapat
     hideDetail();
 
     if (hash.includes('#tüm-medyalar') || hash === '') {
@@ -344,7 +384,6 @@ window.addEventListener('popstate', () => {
         mainNav.querySelector('a[data-view="favorites"]').classList.add('active');
         
     }
-    // Detay URL hash'i artık kullanılmadığı için son 'else if' bloğu silinmiştir.
 });
 
 // Uygulama başladığında ilk temayı yükle ve veriyi çek
