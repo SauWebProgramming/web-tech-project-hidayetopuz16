@@ -9,7 +9,8 @@
 <body>
 
     <header>
-        <div class="header-content"> <h1>Medya Kitaplığı</h1>
+        <div class="header-content"> 
+            <h1>Medya Kitaplığı</h1>
             <nav id="main-nav"> 
                 <a href="#tüm-medyalar" data-view="home" class="active">Tüm Medyalar</a>
                 <a href="#favorilerim" data-view="favorites">Favorilerim</a> 
@@ -20,13 +21,22 @@
 
     <main>
 
-        <section id="filters"> <input type="text" id="search-input" placeholder="Medya Ara...">
+        <section id="filters"> 
+            <input type="text" id="search-input" placeholder="Medya Ara...">
+            
+            <select id="type-filter">
+                <option value="">Tüm Türler</option>
+                <option value="Film">Film</option>
+                <option value="Dizi">Dizi</option>
+                <option value="Kitap">Kitap</option> </select>
+            
             <select id="category-filter">
                 <option value="">Tüm Kategoriler</option>
             </select>
             <select id="year-filter">
                 <option value="">Tüm Yıllar</option>
             </select>
+            
             <select id="sort-filter">
                 <option value="none">Sıralama</option>
                 <option value="rating_desc">Puana Göre (Yüksekten)</option>
@@ -39,11 +49,11 @@
         <section id="media-list" class="grid-view" style="display: none;">
         </section>
         
-        </main>
+    </main>
 
     <footer>
-        <p>Geliştiren: B231200015 Hidayet Opuz | © 2025 İnteraktif Medya Kitaplığı</p>
-    </footer>
+    <p>Geliştiren: B231200015 Hidayet Opuz | © 2025 İnteraktif Medya Kitaplığı. Tüm Hakları Saklıdır.</p>
+</footer>
 
     <div id="media-detail-modal" class="modal">
         <div class="modal-content">
