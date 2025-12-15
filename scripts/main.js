@@ -2,7 +2,11 @@
 
 // Açıklama: Proje boyunca const ve let kullanılarak modern JavaScript (ES6+) standartlarına uyulmuştur.
 const mediaListSection = document.getElementById('media-list'); 
-const mediaDetailSection = document.getElementById('media-detail');
+
+// YENİLİK: mediaDetailContainer, modal içerisindeki content'i temsil ediyor.
+const mediaDetailContainer = document.getElementById('media-detail'); 
+const mediaDetailModal = document.getElementById('media-detail-modal'); // YENİ: Modal bindirme elementiniz
+
 const searchInput = document.getElementById('search-input');
 const categoryFilter = document.getElementById('category-filter');
 const yearFilter = document.getElementById('year-filter');
@@ -14,22 +18,23 @@ const themeToggle = document.getElementById('theme-toggle'); // Tema butonu
 let allMedia = []; 
 let currentView = 'home'; 
 
-// Açıklama: Karanlık Tema Yönetimi Fonksiyonları (İleri JS, CSS Değişkenleri ve localStorage kullanımı)
+// Açıklama: Karanlık Tema Yönetimi Fonksiyonları
 const enableDarkTheme = () => {
     document.body.classList.add('dark-theme');
-    document.body.classList.add('dark-theme-bg'); // YENİLİK
-    document.body.classList.remove('light-theme-bg'); // YENİLİK
+    document.body.classList.add('dark-theme-bg'); 
+    document.body.classList.remove('light-theme-bg'); 
     themeToggle.textContent = '☀️ Açık Mod';
     localStorage.setItem('theme', 'dark'); 
 };
 
 const disableDarkTheme = () => {
     document.body.classList.remove('dark-theme');
-    document.body.classList.remove('dark-theme-bg'); // YENİLİK
-    document.body.classList.add('light-theme-bg'); // YENİLİK
+    document.body.classList.remove('dark-theme-bg'); 
+    document.body.classList.add('light-theme-bg'); 
     themeToggle.textContent = '🌙 Karanlık Mod';
     localStorage.setItem('theme', 'light'); 
 };
+
 // Başlangıçta temayı localStorage'dan yükle
 const initializeTheme = () => {
     const savedTheme = localStorage.getItem('theme'); 
@@ -37,9 +42,10 @@ const initializeTheme = () => {
         enableDarkTheme();
     } else {
         disableDarkTheme();
-    } }
+    } 
+}
 
-// Yüklenme durumunu gösteren fonksiyonlar (Gelişmiş UX)
+// Yüklenme durumunu gösteren fonksiyonlar
 const showLoading = () => {
     loader.style.display = 'block';
     mediaListSection.style.display = 'none';
@@ -157,18 +163,21 @@ const applyFiltersAndSorting = () => {
     renderMediaList(filteredMedia);
 };
 
+// YENİ: Detay Modalını Gizleme Fonksiyonu
+const hideDetail = () => {
+    // URL'yi değiştirmiyoruz, sadece modalı gizliyoruz.
+    mediaDetailModal.style.display = 'none';
+}
 
-// Açıklama: Detay Sayfası Gösterme (SPA Mantığı)
+
+// Açıklama: Detay Modalını Gösterme (URL DEĞİŞİKLİĞİ YOK)
 const showDetail = (mediaId) => {
     const media = allMedia.find(m => m.id === mediaId);
     if (!media) return;
 
-    // YENİLİK: Geri butonu için doğru hash formatını kullan
-    history.pushState(null, '', `#medya-detay-${mediaId}`); 
-    currentView = 'detail';
+    // Detay artık ana sayfayı bloke eden bir Modal.
+    mediaDetailModal.style.display = 'flex'; 
 
-    mediaListSection.style.display = 'none'; 
-    
     // Başlık rengini kategoriye göre dinamik yap
     const titleColor = media.category === 'Bilim Kurgu' ? 'navy' : (media.category === 'Aksiyon' ? 'darkred' : 'purple');
 
@@ -177,10 +186,9 @@ const showDetail = (mediaId) => {
     const buttonText = isFav ? 'Favorilerden Çıkar' : 'Favorilere Ekle';
     const buttonSymbol = isFav ? '★' : '☆'; // ★ (dolu yıldız) veya ☆ (boş yıldız)
 
-    // YENİ HTML ŞABLONU (POSTER KISMI ZATEN DOĞRUYDU)
-    mediaDetailSection.innerHTML = `
+    // Detay içeriğini modalın içindeki container'a yazdır
+    mediaDetailContainer.innerHTML = `
         <div class="detail-card">
-            <button onclick="navigate('home')" class="back-button">← Geri Dön</button>
             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 
                 <div style="flex-shrink: 0;">
@@ -211,7 +219,7 @@ const showDetail = (mediaId) => {
             </button>
             </div>
     `;
-    mediaDetailSection.style.display = 'block'; 
+    // Modal, showDetail ile açıldığı için liste görünmeye devam eder.
 };
 
 
@@ -236,13 +244,11 @@ const toggleFavorite = (mediaId) => {
 
     localStorage.setItem('mediaFavorites', JSON.stringify(favorites));
 
-    // Görünümü güncel tut
-    if (currentView === 'detail') {
-        showDetail(mediaId); 
-    } else {
-        // YENİLİK: Favoriler sayfasındaysak filtreleri tekrar uygular.
-        applyFiltersAndSorting(); 
-    }
+    // Modal içindeki buton durumunu güncellemek için detay gösterimini tekrar çağır
+    showDetail(mediaId); 
+    
+    // YENİLİK: Favoriler veya Ana sayfadaki listeyi güncelle.
+    applyFiltersAndSorting(); 
 };
 
 
@@ -256,7 +262,8 @@ const navigate = (view) => {
     yearFilter.value = '';
     sortFilter.value = 'none'; // Sıralamayı resetle
 
-    mediaDetailSection.style.display = 'none';
+    // YENİLİK: Detay modalını gizle
+    hideDetail(); 
 
     if (view === 'home') {
         history.pushState(null, '', `#tüm-medyalar`); 
@@ -300,12 +307,31 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
+// YENİLİK: Modal dışına tıklayınca kapatma
+window.addEventListener('click', (event) => {
+    // Eğer tıklanan element modalın kendisiyse (içindeki içerik değil) kapat.
+    if (event.target == mediaDetailModal) {
+        hideDetail();
+    }
+});
 
-// YENİLİK: Geri/İleri Tuşu Yönetimi (popstate)
+// YENİLİK: ESC tuşu ile modal kapatma
+window.addEventListener('keydown', (event) => {
+    // ESC tuşuna basıldıysa ve modal açıksa
+    if (event.key === 'Escape' && mediaDetailModal.style.display === 'flex') {
+        hideDetail();
+    }
+});
+
+
+// YENİLİK: Geri/İleri Tuşu Yönetimi (popstate) - Detay URL'lerini artık yönetmeyecek
 window.addEventListener('popstate', () => {
     const hash = window.location.hash; 
+    
+    // YENİLİK: Her durumda modalı kapat
+    hideDetail();
 
-    if (hash.includes('#tüm-medyalar') || hash === '' || hash === '#detail') {
+    if (hash.includes('#tüm-medyalar') || hash === '') {
         // Eğer hash ana sayfaya döndüyse
         navigate('home');
         mainNav.querySelectorAll('a').forEach(navLink => navLink.classList.remove('active'));
@@ -317,13 +343,8 @@ window.addEventListener('popstate', () => {
         mainNav.querySelectorAll('a').forEach(navLink => navLink.classList.remove('active'));
         mainNav.querySelector('a[data-view="favorites"]').classList.add('active');
         
-    } else if (hash.startsWith('#medya-detay-')) {
-        // Eğer detay sayfasındayken Geri/İleri tuşuna basıldıysa ve hash yine detay ise
-        const id = parseInt(hash.split('-')[2]);
-        if (id) {
-            showDetail(id); 
-        }
     }
+    // Detay URL hash'i artık kullanılmadığı için son 'else if' bloğu silinmiştir.
 });
 
 // Uygulama başladığında ilk temayı yükle ve veriyi çek
