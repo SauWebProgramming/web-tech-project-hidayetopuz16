@@ -39,4 +39,4 @@ Projem, sunucu tarafı kod kullanmadan, tamamen modern **HTML5, CSS3 ve ES6+ Jav
 | :--- | :--- |
 | **GitHub Repository** | https://github.com/SauWebProgramming/web-tech-project-hidayetopuz16 |
 | **Canlı GitHub Pages Linki** | https://sauwebprogramming.github.io/web-tech-project-hidayetopuz16/ |
-| **YouTube Video Anlatım Linki** | [Kendi YouTube Video Linkimi Buraya Ekleyeceğim (Liste Dışı)] |
+| **YouTube Video Anlatım Linki** | https://www.youtube.com/watch?v=I5Q1mZFoudw |
